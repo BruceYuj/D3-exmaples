@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			div.bar {
+				display: inline-block;
+				width: 20px;
+				height: 75px;
+				background-color: teal;
+				margin-right: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script src="js/d3.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var dataset = [5, 10, 15, 20, 25];
+			d3.select("body").selectAll("p")
+				.data(dataset)
+				.enter()
+				.append("div")
+				.attr("class", "bar")
+				.style("height", function(d) {
+					return 5 * d + "px";
+				});
+		</script>
+	</body>
+
+</html>
