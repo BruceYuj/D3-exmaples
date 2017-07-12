@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script src="js/d3.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var dataset = [5, 10, 15, 20, 25, 30,50,60];
+			var width = 500;
+			var height = 500;
+			var svg = d3.select("body").append("svg");
+			
+			svg.attr("width", width)
+				.attr("height", height);
+			
+			var rects = svg.selectAll("rect")
+							.data(dataset)
+							.enter()
+							.append("rect");
+							
+			rects.attr("x", function(d, i) {
+				return i * (width / dataset.length);
+			})
+				.attr("y", function(d) {
+					return height - d*4;
+				})
+				.attr("width", width / (dataset.length+1))
+				.attr("height", function (d) {
+					return d * 4;
+				})
+				.attr("fill", function(d) {
+					return "rgb(0, 0, " + ( d * 10) + ")";
+				});
+				
+				// 插入文本数值
+				svg.selectAll("text")
+					.data(dataset)
+					.enter()
+					.append("text")
+					.text(function(d) {
+						return d;
+					})
+					.attr("x", function(d, i) {
+						return i*(width / dataset.length) + (width / (dataset.length+1)) / 2;
+					})
+					.attr("y", function(d) {
+						return height - d*4 + 16;
+					})
+					.attr("fill", "white")
+					.attr("font-size", "16px")
+					.attr("text-anchor", "middle");
+
+		</script>
+	</body>
+
+</html>
